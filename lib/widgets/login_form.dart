@@ -1,3 +1,4 @@
+import 'package:book_tracker/screens/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -66,7 +67,14 @@ class LoginForm extends StatelessWidget {
                       .signInWithEmailAndPassword(
                           email: _emailTextController.text,
                           password: _passwordTextController.text)
-                      .then((value) => print(value.user!.uid));
+                      .then((value) {
+                    // print(value.user!.uid);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MainScreenPage(),
+                        ));
+                  });
                 }
               },
               child: Text('Giriş yap'))

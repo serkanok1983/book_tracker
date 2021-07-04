@@ -1,3 +1,5 @@
+import 'package:book_tracker/screens/main_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'input_decoration.dart';
@@ -62,7 +64,26 @@ class CreateAccountForm extends StatelessWidget {
                 textStyle: TextStyle(fontSize: 18),
               ),
               onPressed: () {
-                if (_formKey.currentState!.validate()) {}
+                if (_formKey.currentState!.validate()) {
+                  FirebaseAuth.instance
+                      .createUserWithEmailAndPassword(
+                          email: _emailTextController.text,
+                          password: _passwordTextController.text)
+                      .then((value) {
+                    // print(value.user!.email);
+                    FirebaseAuth.instance
+                        .signInWithEmailAndPassword(
+                            email: _emailTextController.text,
+                            password: _passwordTextController.text)
+                        .then((value) {
+                      return Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MainScreenPage(),
+                          ));
+                    });
+                  });
+                }
               },
               child: Text('Hesap oluştur'))
         ],

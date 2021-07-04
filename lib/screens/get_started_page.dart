@@ -13,7 +13,7 @@ class GetStartedPage extends StatelessWidget {
           children: [
             Spacer(),
             Text(
-              'Kitap Takibi',
+              ' K i t a p ç ı ',
               style: Theme.of(context).textTheme.headline3,
             ),
             SizedBox(
