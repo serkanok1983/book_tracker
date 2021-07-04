@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'input_decoration.dart';
@@ -60,7 +61,13 @@ class LoginForm extends StatelessWidget {
                 textStyle: TextStyle(fontSize: 18),
               ),
               onPressed: () {
-                if (_formKey.currentState!.validate()) {}
+                if (_formKey.currentState!.validate()) {
+                  FirebaseAuth.instance
+                      .signInWithEmailAndPassword(
+                          email: _emailTextController.text,
+                          password: _passwordTextController.text)
+                      .then((value) => print(value.user!.uid));
+                }
               },
               child: Text('Giriş yap'))
         ],
